@@ -328,9 +328,13 @@
 
   // Initialize.
 
-  // Hide main, articles.
-  $main.hide();
-  $main_articles.hide();
+  // // Hide main, articles.
+  // $main.hide();
+  // $main_articles.hide();
+
+  // 不再隐藏 main 和文章。
+  $main_articles.show(); // 如果需要显示所有文章
+  $main.show();
 
   // Initial article.
   if (location.hash != "" && location.hash != "#")
