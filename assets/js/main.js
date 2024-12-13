@@ -252,7 +252,13 @@
     $('<div class="close">Close</div>')
       .appendTo($this)
       .on("click", function () {
-        location.hash = "";
+        if (window.history.length > 1) {
+          // Check if there's a history to navigate back
+          history.back();
+        } else {
+          // Fallback to a specific action or page
+          location.hash = ""; // Replace "#main" with your desired fallback
+        }
       });
 
     // Prevent clicks from inside article from bubbling.
