@@ -15,9 +15,15 @@
     <div id="wrapper_center">
       <div id="main">
         <!-- Article -->
-        <article id="test">
-          <h2 class="major">Test</h2>
-          <p>Just a blog page for test</p>
+        <article id="blog1">
+          <h2 class="major">Markdown to HTML Test</h2>
+          <h3 id="小标题">小标题</h3>
+          <ol type="1">
+            <li>列表 1</li>
+            <li>列表 2</li>
+            <li>空</li>
+          </ol>
+          <p>我就是想测试一下，怎么把 md 转换为 html。111</p>
         </article>
       </div>
 
@@ -35,8 +41,9 @@
     <script src="../../assets/js/util.js"></script>
     <script src="../../assets/js/main.js"></script>
     <script>
+      // 设置 location.hash，确保初始化时直接加载 blog1
       window.onload = function () {
-        location.hash = "test";
+        location.hash = "blog1";
       };
     </script>
   </body>
