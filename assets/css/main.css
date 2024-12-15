@@ -884,7 +884,7 @@ dl dd {
 
 /* Actions */
 
-/* ul.actions {
+ul.actions {
   display: -moz-flex;
   display: -webkit-flex;
   display: -ms-flex;
@@ -892,15 +892,6 @@ dl dd {
   cursor: default;
   list-style: none;
   margin-left: -1rem;
-  padding-left: 0;
-} */
-
-ul.actions {
-  display: flex;
-  justify-content: center; /* 水平居中 */
-  align-items: center; /* 垂直居中 */
-  list-style: none;
-  margin: 0 auto; /* 保证整个容器在页面中居中 */
   padding-left: 0;
 }
 
