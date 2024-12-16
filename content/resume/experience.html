@@ -12,7 +12,7 @@
   </head>
   <body class="is-preload">
     <!-- Wrapper -->
-    <div id="wrapper_center">
+    <div id="wrapper">
       <div id="main">
         <!-- Article -->
         <article id="experience">
@@ -73,31 +73,81 @@
 
           <h2>Professional Experience</h2>
 
-          <h3>Ernst & Young U.S. LLP, New York, USA</h3>
-          <p><strong>Senior</strong> (Oct 2023 – Present)</p>
+          <h3>
+            Quantitative Trading Book in Ernst & Young U.S. LLP, New York, USA
+          </h3>
+          <p><strong>Senior Consultant</strong> (Oct 2023 – Present)</p>
           <ul>
             <li>
-              <strong>Derivatives Pricing Algorithm Project:</strong>
-              Modularized project, developed unit test modules, and improved
-              operational efficiency.
+              <strong>Modular Redesign of Derivatives Pricing Algorithm</strong>
+              <ul>
+                <li>
+                  Led the architectural overhaul by decomposing the algorithm
+                  into service class and separate analysis units, achieving high
+                  decoupling of code.
+                </li>
+                <li>
+                  Enabled independent updates to each component without
+                  affecting the overall system, significantly reducing
+                  redundancy and enhancing maintainability.
+                </li>
+                <li>
+                  Designed and implemented robust unit testing frameworks,
+                  improving system debug reliability by proactively identifying
+                  potential errors.
+                </li>
+              </ul>
             </li>
             <li>
-              <strong
-                >Equity Derivatives Market Shock Algorithm Enhancement:</strong
-              >
-              Enhanced accuracy by pricing based on the underlying location's
-              risk.
+              <strong>Optimization of American Options Pricing</strong>
+              <ul>
+                <li>
+                  Applied the American Monte Carlo (AMC) method to price
+                  American options, replacing the computationally intensive
+                  Monte Carlo over Monte Carlo method.
+                </li>
+                <li>
+                  Achieved a substantial reduction in computational complexity
+                  from O(n²) to O(n), cutting pricing time and saving
+                  considerable computational resources.
+                </li>
+              </ul>
             </li>
             <li>
-              <strong
-                >Counterparty Credit Risk Monitoring Using SFT VaR-Based
-                Models:</strong
-              >
-              Monitored risks by updating parameters with market data.
+              <strong>Equity Derivatives Pricing Algorithm Enhancement</strong>
+              <ul>
+                <li>
+                  Improved the pricing framework for equity derivatives by
+                  transitioning from a market-based risk model to an underlying
+                  location-based risk analysis, enhancing accuracy and
+                  interpretability.
+                </li>
+                <li>
+                  Integrated advanced machine learning techniques, such as LSTM,
+                  random forest models with traditional MCMC methods to price
+                  derivatives, enabling the pricing of complex toxic options
+                  with more than three underlying assets.
+                </li>
+              </ul>
             </li>
             <li>
-              <strong>Optimization of American Options Pricing:</strong> Reduced
-              computational complexity using the American Monte Carlo method.
+              <strong>Counterparty Credit Risk Monitoring</strong>
+              <ul>
+                <li>
+                  Employed SFT VaR-based models to calculate and monitor
+                  Counterparty Credit Risk.
+                </li>
+                <li>
+                  Interpreted complex data and model results, delivering clear
+                  insights to stakeholders, including cross-disciplinary teams
+                  and non-technical audiences.
+                </li>
+                <li>
+                  Regularly updated model parameters in line with evolving
+                  market data, ensuring the models reflect current market
+                  conditions and deliver accurate risk assessments.
+                </li>
+              </ul>
             </li>
           </ul>
 
@@ -108,12 +158,14 @@
           </p>
           <ul>
             <li>
-              Predicted stock performance using a time series model with
-              spike-and-slab error.
+              Focused on battery and new energy industry. Predicted the short-
+              and long-term performance of stocks of related companies based on
+              time series model with a spike-and-slab error.
             </li>
             <li>
-              Adjusted predictions for correlated companies using a multinomial
-              model.
+              Adjusted the prediction under a multinomial model based on the
+              performance of correlated companies and avoided making an
+              over-optimistic forecast compared with previous model.
             </li>
           </ul>
 
@@ -121,11 +173,24 @@
           <p><strong>Data Analyst (Intern)</strong> (July 2017 – Sept 2017)</p>
           <ul>
             <li>
-              Cleaned and reshaped 17M visitor records and segmented them using
-              clustering techniques.
+              Unsupervised screened visitors with a strong desire to buy
+              products based on their records on company’s APP.
             </li>
             <li>
-              Built a decision tree model to label new visitors efficiently.
+              Cleaned and reshaped the 17 million visitor records by summarizing
+              operations from the same visitor.
+            </li>
+            <li>
+              Extracted useful variables by PCA (principal component analysis)
+              method.
+            </li>
+            <li>
+              Divided visitors into five groups by K-means methods and assigned
+              visitors labels by their group.
+            </li>
+            <li>
+              Fitted a decision tree with labeled data which could tag new
+              visitor within 20 seconds while the target is 1 min.
             </li>
           </ul>
 
@@ -136,13 +201,104 @@
           <p><strong>Project Leader</strong> (Sept 2020 – Oct 2023)</p>
           <ul>
             <li>
-              <strong>Credit Card Approval:</strong> Built models for unbalanced
-              data and outliers, applying Logistic Regression, XGBoost, and
-              Random Forest.
+              <strong
+                >Comparison Cooling Methods Effects through Cluster
+                Analysis</strong
+              >
+              <ul>
+                <li>
+                  Compared the effects of different cooling methods on body
+                  temperatures and heart rates with time series response.
+                </li>
+                <li>
+                  Standardized units and erased individual differences by using
+                  ratios of dependent variables.
+                </li>
+                <li>
+                  Grouped data by K-means method and paired them with prior
+                  information.
+                </li>
+                <li>
+                  Relabeled dependent variables based on cooling and heating
+                  procedures to avoid confounding and redesigned hypothesis
+                  tests to avoid drawing opposite conclusions.
+                </li>
+              </ul>
             </li>
             <li>
-              <strong>Yelp Reviews Rating Prediction:</strong> Processed Yelp
-              reviews and built predictive models using LSTM.
+              <strong
+                >Recommendation of Artificial Leg with Feature Extraction
+                Method</strong
+              >
+              <ul>
+                <li>
+                  Recommended the best type of artificial leg for certain
+                  patients based on physiological and psychological tests.
+                </li>
+                <li>
+                  Applied PCA transformation on highly linearly correlated
+                  psychological test variables to find interpretable criteria.
+                </li>
+                <li>
+                  Used Lasso method to select physiological tests, helping
+                  clients avoid wasting funds on unnecessary tests.
+                </li>
+                <li>
+                  Compared with XGBoost model; our model is interpretable while
+                  sharing similar prediction accuracy.
+                </li>
+              </ul>
+            </li>
+            <li>
+              <strong
+                >Credit Card Approval with Unbalanced Data and Outliers</strong
+              >
+              <ul>
+                <li>
+                  Decided who to approve or decline for credit based on
+                  historical repayment records.
+                </li>
+                <li>
+                  Added new missing indicator variables before applying imputing
+                  methods after checking randomness.
+                </li>
+                <li>
+                  Generated features based on the distribution of outliers and
+                  assigned different weights to unbalanced responses.
+                </li>
+                <li>
+                  Fitted logistic regression, XGBoost, and Random Forest models
+                  separately and used the linear combination of three models as
+                  the final model after cross-validation.
+                </li>
+              </ul>
+            </li>
+            <li>
+              <strong>Yelp Reviews Rating Prediction</strong>
+              <ul>
+                <li>
+                  Predicted Yelp reviews’ rating on 1 million unlabeled text
+                  reviews.
+                </li>
+                <li>
+                  Cleaned 1.5 million Yelp reviews by removing non-English
+                  comments, abbreviations, and spelling mistakes.
+                </li>
+                <li>
+                  Extracted positive/negative words based on their relative
+                  frequency in differently rated reviews to avoid over-weighting
+                  everyday words like “the” or “a.”
+                </li>
+                <li>
+                  Converted text reviews into vectors using Sentence-To-Vector
+                  and generated new features from positive/negative words.
+                </li>
+                <li>
+                  Fitted pre-processed data using a Long-Short-Term-Memory
+                  (LSTM) neural network and achieved a 0.6
+                  root-mean-square-error.
+                </li>
+              </ul>
             </li>
           </ul>
 
@@ -151,19 +307,70 @@
           <h2>Doctoral Thesis</h2>
           <ul>
             <li>
-              <strong>Item-Response-Theory Model:</strong> Adjusted for
-              unbalanced data to reduce prediction errors.
+              <strong>Item-Response-Theory Model:</strong>
+              <ul>
+                <li>
+                  Estimated individual’s ability and item’s difficulty based on
+                  their performances on several.
+                </li>
+                <li>
+                  Adapted logistical regression model by Item-Response-Theory
+                  model with a power parameter which can control the skewness of
+                  link function.
+                </li>
+                <li>
+                  Combined Sliced sampling and Gibbs sampling method (MCMC) to
+                  get estimations of interested variables.
+                </li>
+                <li>
+                  Reduced the prediction error by half compared with normal
+                  logistical regression model.
+                </li>
+              </ul>
             </li>
             <li>
               <strong>Joint Model of Item Response and Response Time:</strong>
-              Combined logistic and linear regression with nonparametric priors.
+              <ul>
+                <li>
+                  Estimated individual’s ability based on both item response
+                  (IR) and response time (RT).
+                </li>
+                <li>
+                  Fitted separate logistic and linear regression for IR and RT.
+                  Combined them with a nonparametric Dirichlet Process prior on
+                  individual’s ability which get rid of normality assumption of
+                  variables.
+                </li>
+                <li>
+                  Estimated individual’s ability by Hamiltonian Monte Carlo and
+                  clustered individuals by patterns from Dirichlet Process.
+                </li>
+              </ul>
             </li>
             <li>
               <strong
                 >Joint Model of Longitudinal Item Response and Survival
                 Time:</strong
               >
-              Explored trends using stochastic gradient descent.
+              <ul>
+                <li>
+                  Examined trend of individual’s ability over time and their
+                  effects on response time.
+                </li>
+                <li>
+                  Individual’s ability was taken as longitudinal and estimated
+                  by forward and backward forecasting method.
+                </li>
+                <li>
+                  Response time was fitted as a Cox proportional hazards model
+                  through partial likelihood method which is a semiparametric
+                  approach.
+                </li>
+                <li>
+                  All unknown parameters are estimated by stochastic gradient
+                  descent algorithm.
+                </li>
+              </ul>
             </li>
           </ul>
 
@@ -175,9 +382,13 @@
               <strong>Languages:</strong> Mandarin Chinese (Native), English
             </li>
             <li>
-              <strong>Coding/Database:</strong> Proficient in R, Python, GitHub,
-              LaTeX, Nimble, JUGS, HPC. Familiar with SQL, SAS, MATLAB, C++, and
-              Julia.
+              <strong>Coding/Database:</strong>
+              <ul>
+                <li>
+                  Proficient in R, Python, GitHub, LaTeX, Nimble, JUGS, HPC.
+                </li>
+                <li>Familiar with SQL, SAS, MATLAB, C++, Julia.</li>
+              </ul>
             </li>
             <li><strong>Certification:</strong> CFA Level 1</li>
           </ul>
