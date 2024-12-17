@@ -1808,3 +1808,52 @@ body.is-article-visible #footer {
 body.is-preload #footer {
   opacity: 0;
 }
+
+/* 缩略图 */
+
+/* 控制blog-list的列表项布局 */
+.blog-list li {
+  display: flex; /* 使用Flexbox布局 */
+  justify-content: space-between; /* 标题区域在左，图片在右 */
+  align-items: center; /* 垂直居中对齐 */
+  margin-bottom: 1.5rem; /* 列表项之间的间距 */
+  padding: 1rem 0; /* 上下内边距 */
+}
+
+/* 标题区域样式 */
+.blog-content {
+  display: flex;
+  flex-direction: column; /* 让标题和描述垂直排列 */
+  justify-content: center; /* 垂直居中 */
+}
+
+/* 标题样式 */
+.blog-title {
+  margin: 0 0 0.5rem 0; /* 在标题和描述之间添加间距 */
+  font-size: 1.2rem; /* 标题字体大小 */
+  color: #ffffff; /* 标题颜色 */
+}
+
+.blog-title a {
+  text-decoration: none; /* 去除链接下划线 */
+  color: #ffffff; /* 链接颜色 */
+}
+
+.blog-title a:hover {
+  color: #00bfff; /* 悬停时改变颜色 */
+}
+
+/* 描述文字样式 */
+.blog-description {
+  margin: 0; /* 去除外边距 */
+  font-size: 0.9rem; /* 描述字体大小 */
+  color: #ccc; /* 描述文字颜色 */
+}
+
+/* 缩略图样式 */
+.blog-thumbnail {
+  width: 100px; /* 图片宽度 */
+  height: auto; /* 保持图片比例 */
+  border-radius: 4px; /* 图片圆角 */
+  margin-left: 1rem; /* 左侧间距 */
+}
