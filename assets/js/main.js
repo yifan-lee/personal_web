@@ -341,4 +341,9 @@
     $window.on("load", function () {
       $main._show(location.hash.substr(1), true);
     });
+
+  // 强制显示所有 .blog-item 元素
+  $(document).ready(function () {
+    $(".blog-item").show();
+  });
 })(jQuery);
