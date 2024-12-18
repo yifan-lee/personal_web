@@ -1833,3 +1833,13 @@ body.is-preload #footer {
   justify-content: center;
   align-items: center; /* 保证图片居中显示 */
 }
+
+/* 使图片不超过article范围 */
+
+article img {
+  max-width: 100%; /* 图片最大宽度为父容器宽度 */
+  height: auto; /* 高度根据宽度按比例缩放 */
+  display: block; /* 确保图片是块级元素 */
+  margin: 1rem auto; /* 图片居中并与内容保持间距 */
+  border-radius: 8px; /* 添加圆角，提升视觉效果 */
+}
