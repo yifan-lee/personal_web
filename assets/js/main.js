@@ -252,18 +252,10 @@
     $('<div class="close">Close</div>')
       .appendTo($this)
       .on("click", function () {
-        $("body").addClass("is-preload");
-        $("#wrapper").css("opacity", 0);
-        // 判断是否有前一个页面的引用
-        if (document.referrer && document.referrer !== window.location.href) {
-          // 使用 referrer 跳转
-          window.location.href = document.referrer;
-        } else if (history.length > 1) {
-          // 如果没有有效的 referrer，但浏览器有历史记录，则后退
-          history.back();
+        if (history.length > 1) {
+          history.back(); // 返回上一页
         } else {
-          // 如果既没有 referrer，也没有历史记录，则跳转到主页或默认页面
-          window.location.href = "../../index.html";
+          location.hash = ""; // 如果没有历史记录，则清空 hash
         }
       });
 
