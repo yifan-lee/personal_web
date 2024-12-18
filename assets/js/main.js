@@ -244,11 +244,6 @@
     }, delay);
   };
 
-  document.querySelectorAll("a").forEach((link) => {
-    link.addEventListener("click", function () {
-      sessionStorage.setItem("lastPage", window.location.href);
-    });
-  });
   // Articles.
   $main_articles.each(function () {
     var $this = $(this);
@@ -257,11 +252,15 @@
     $('<div class="close">Close</div>')
       .appendTo($this)
       .on("click", function () {
-        const lastPage = sessionStorage.getItem("lastPage");
-        if (lastPage) {
-          window.location.href = lastPage;
+        // 判断是否有前一个页面的引用
+        if (document.referrer) {
+          // 如果有合法的前一个页面并且属于同一个网站
+          window.location.href = document.referrer;
         } else {
-          window.location.href = "../../index.html"; // 默认跳转
+          // 如果没有合法的前一个页面
+          history.length > 1
+            ? history.back()
+            : (window.location.href = "../../index.html");
         }
         // if (history.length > 1) {
         //   history.back(); // 返回上一页
