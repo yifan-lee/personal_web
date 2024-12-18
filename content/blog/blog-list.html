@@ -8,71 +8,89 @@
       content="width=device-width, initial-scale=1, user-scalable=no"
     />
     <link rel="stylesheet" href="../../assets/css/main.css" />
-    <noscript>
-      <link rel="stylesheet" href="../../assets/css/noscript.css" />
-    </noscript>
+    <noscript
+      ><link rel="stylesheet" href="../../assets/css/noscript.css"
+    /></noscript>
   </head>
   <body class="is-preload">
     <!-- BG -->
     <div id="bg"></div>
-
     <!-- Wrapper -->
     <div id="wrapper">
-      <header id="header">
-        <div class="content">
-          <div class="inner">
-            <h1>Blog</h1>
-            <ul class="blog-list">
-              <li class="blog-item">
-                <div class="blog-content">
-                  <h3 class="blog-title">
-                    <a href="blog-post1.html">First Blog Post</a>
-                  </h3>
-                  <p class="blog-description">
-                    It's my first time to write blog in HTML format.
-                  </p>
-                </div>
-              </li>
-              <li class="blog-item">
-                <div class="blog-content">
-                  <h3 class="blog-title">
-                    <a href="Review-密室惊魂.html">Review - 密室惊魂</a>
-                  </h3>
-                  <p class="blog-description">
-                    An exciting review of the 密室惊魂 movie.
-                  </p>
-                </div>
-                <img
-                  src="../../images/blog/密室惊魂.jpeg"
-                  alt="Thumbnail"
-                  class="blog-thumbnail"
-                />
-              </li>
-              <li class="blog-item">
-                <div class="blog-content">
-                  <h3 class="blog-title">
-                    <a href="Review-GameOfThroneCardGame.html"
-                      >Review - A Game of Thrones: The Card Game</a
-                    >
-                  </h3>
-                  <p class="blog-description">
-                    My thoughts on the popular Game of Thrones card game.
-                  </p>
-                </div>
-                <img
-                  src="../../images/blog/权力的游戏卡牌版.jpeg"
-                  alt="Thumbnail"
-                  class="blog-thumbnail"
-                />
-              </li>
-            </ul>
-          </div>
-        </div>
-        <ul class="actions special">
-          <li><a href="../../index.html" class="button">Back</a></li>
-        </ul>
-      </header>
-      <footer id="footer"></footer>
+      <!-- Main -->
+      <header id="header"></header>
+      <div id="main">
+        <article id="blog-list">
+          <h2 class="major">Blog</h2>
+          <ul class="blog-list">
+            <li class="blog-item">
+              <div class="blog-content">
+                <h3 class="blog-title">
+                  <a href="blog-post1.html">First Blog Post</a>
+                </h3>
+                <p class="blog-description">
+                  It's my first time to write blog in HTML format.
+                </p>
+              </div>
+            </li>
+            <li class="blog-item">
+              <div class="blog-content">
+                <h3 class="blog-title">
+                  <a href="Review-密室惊魂.html">Review - 密室惊魂</a>
+                </h3>
+              </div>
+              <img
+                src="../../images/blog/密室惊魂.jpeg"
+                alt="Thumbnail"
+                class="blog-thumbnail"
+              />
+            </li>
+            <li class="blog-item">
+              <div class="blog-content">
+                <h3 class="blog-title">
+                  <a href="Review-GameOfThroneCardGame.html"
+                    >Review - A Game of Thrones: The Card Game</a
+                  >
+                </h3>
+              </div>
+              <img
+                src="../../images/blog/权力的游戏卡牌版.jpeg"
+                alt="Thumbnail"
+                class="blog-thumbnail"
+              />
+            </li>
+            <li class="blog-item">
+              <div class="blog-content">
+                <h3 class="blog-title">
+                  <a href="Review-卡片U盘.html"
+                    >Review - Card-Shaped USB Drive</a
+                  >
+                </h3>
+              </div>
+              <img
+                src="../../images/blog/卡片U盘.jpg"
+                alt="Thumbnail"
+                class="blog-thumbnail"
+              />
+            </li>
+            <li class="blog-item">
+              <div class="blog-content">
+                <h3 class="blog-title">
+                  <a href="Review-PacificRim.html"
+                    >Review - Pacific Rim Novel</a
+                  >
+                </h3>
+              </div>
+              <img
+                src="../../images/blog/PacificRim.jpg"
+                alt="Thumbnail"
+                class="blog-thumbnail"
+              />
+            </li>
+            <!-- 更多博客列表项 -->
+          </ul>
+        </article>
+      </div>
     </div>
 
     <!-- Scripts -->
@@ -81,5 +99,11 @@
     <script src="../../assets/js/breakpoints.min.js"></script>
     <script src="../../assets/js/util.js"></script>
     <script src="../../assets/js/main.js"></script>
+    <script>
+      // 设置 location.hash，确保初始化时直接加载 blog1
+      window.onload = function () {
+        location.hash = "blog-list";
+      };
+    </script>
   </body>
 </html>

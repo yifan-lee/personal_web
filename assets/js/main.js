@@ -252,12 +252,10 @@
     $('<div class="close">Close</div>')
       .appendTo($this)
       .on("click", function () {
-        if (window.history.length > 1) {
-          // Check if there's a history to navigate back
-          history.back();
+        if (history.length > 1) {
+          history.back(); // 返回上一页
         } else {
-          // Fallback to a specific action or page
-          location.hash = ""; // Replace "#main" with your desired fallback
+          location.hash = ""; // 如果没有历史记录，则清空 hash
         }
       });
 
@@ -329,8 +327,8 @@
   // Initialize.
 
   // // Hide main, articles.
-  // $main.hide();
-  // $main_articles.hide();
+  // 	$main.hide();
+  // 	$main_articles.hide();
 
   // 不再隐藏 main 和文章。
   $main_articles.show(); // 如果需要显示所有文章
@@ -341,9 +339,4 @@
     $window.on("load", function () {
       $main._show(location.hash.substr(1), true);
     });
-
-  // 强制显示所有 .blog-item 元素
-  $(document).ready(function () {
-    $(".blog-item").show();
-  });
 })(jQuery);
