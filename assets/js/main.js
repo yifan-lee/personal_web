@@ -244,6 +244,14 @@
     }, delay);
   };
 
+  // // 定义一个全局数组存储页面路径
+  // let pageStack = [];
+
+  // // 页面加载时记录当前路径
+  // window.addEventListener("load", function () {
+  //   pageStack.push(window.location.href); // 将当前页面 URL 添加到堆栈
+  // });
+
   // Articles.
   $main_articles.each(function () {
     var $this = $(this);
@@ -262,10 +270,19 @@
         //     ? history.back()
         //     : (window.location.href = "../../index.html");
         // }
+
+        // if (pageStack.length > 1) {
+        //   // 返回上一个页面
+        //   pageStack.pop(); // 弹出当前页面
+        //   window.location.href = pageStack[pageStack.length - 1]; // 跳转到堆栈顶部的页面
+        // } else {
+        //   window.location.href = "../../index.html"; // 如果没有历史记录，则清空 hash
+        // }
+
         if (history.length > 1) {
           history.back(); // 返回上一页
         } else {
-          window.location.href = "../../index.html"; // 如果没有历史记录，则清空 hash
+          location.hash = ""; // 如果没有历史记录，则清空 hash
         }
       });
 
