@@ -252,10 +252,18 @@
     $('<div class="close">Close</div>')
       .appendTo($this)
       .on("click", function () {
-        if (history.length > 1) {
-          history.back(); // 返回上一页
+        $("body").addClass("is-preload");
+        $("#wrapper").css("opacity", 0);
+        // 判断是否有前一个页面的引用
+        if (document.referrer && document.referrer !== window.location.href) {
+          // 使用 referrer 跳转
+          window.location.href = document.referrer;
+        } else if (history.length > 1) {
+          // 如果没有有效的 referrer，但浏览器有历史记录，则后退
+          history.back();
         } else {
-          location.hash = ""; // 如果没有历史记录，则清空 hash
+          // 如果既没有 referrer，也没有历史记录，则跳转到主页或默认页面
+          window.location.href = "../../index.html";
         }
       });
 
@@ -339,4 +347,30 @@
     $window.on("load", function () {
       $main._show(location.hash.substr(1), true);
     });
+
+  // 文章末尾获取时间
+  document.addEventListener("DOMContentLoaded", () => {
+    const lastEditedElement = document.getElementById("last-edited");
+
+    if (lastEditedElement) {
+      // 获取当前日期和时间
+      const now = new Date();
+      const formattedDate = now
+        .toLocaleString("en-US", {
+          year: "numeric",
+          month: "2-digit",
+          day: "2-digit",
+          hour: "2-digit",
+          minute: "2-digit",
+          hour12: true, // 12小时制
+        })
+        .replace(",", ""); // 移除默认的逗号分隔符
+
+      // 动态插入最后编辑日期
+      lastEditedElement.innerHTML = `<p><strong>Last Edited:</strong> ${formattedDate}</p>`;
+
+      // 将日期存储到浏览器的 Local Storage（可选）
+      localStorage.setItem("lastEditedDate", formattedDate);
+    }
+  });
 })(jQuery);
