@@ -252,11 +252,24 @@
     $('<div class="close">Close</div>')
       .appendTo($this)
       .on("click", function () {
-        if (history.length > 1) {
-          history.back(); // 返回上一页
+        // 判断是否有前一个页面的引用
+        if (
+          document.referrer &&
+          !document.referrer.includes(window.location.hostname)
+        ) {
+          // 如果有合法的前一个页面并且属于同一个网站
+          window.location.href = document.referrer;
         } else {
-          location.hash = ""; // 如果没有历史记录，则清空 hash
+          // 如果没有合法的前一个页面
+          history.length > 1
+            ? history.back()
+            : (window.location.href = "../../index.html");
         }
+        // if (history.length > 1) {
+        //   history.back(); // 返回上一页
+        // } else {
+        //   location.hash = ""; // 如果没有历史记录，则清空 hash
+        // }
       });
 
     // Prevent clicks from inside article from bubbling.
