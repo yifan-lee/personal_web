@@ -265,7 +265,7 @@
         if (history.length > 1) {
           history.back(); // 返回上一页
         } else {
-          location.hash = ""; // 如果没有历史记录，则清空 hash
+          window.location.href = "../../index.html"; // 如果没有历史记录，则清空 hash
         }
       });
 
