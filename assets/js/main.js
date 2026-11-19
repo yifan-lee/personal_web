@@ -15,21 +15,9 @@
   };
   var $window = $(window),
     $body = $("body"),
-    $wrapper = $("#wrapper"),
-    $header = $("#header"),
     $footer = $("#footer"),
     $main = $("#main"),
     $main_articles = $main.children("article");
-
-  // Breakpoints.
-  breakpoints({
-    xlarge: ["1281px", "1680px"],
-    large: ["981px", "1280px"],
-    medium: ["737px", "980px"],
-    small: ["481px", "736px"],
-    xsmall: ["361px", "480px"],
-    xxsmall: [null, "360px"],
-  });
 
   // Play initial animations on page load.
   $window.on("load", function () {
@@ -37,33 +25,6 @@
       $body.removeClass("is-preload");
     }, 100);
   });
-
-  // Fix: Flexbox min-height bug on IE.
-  if (browser.name == "ie") {
-    var flexboxFixTimeoutId;
-
-    $window
-      .on("resize.flexbox-fix", function () {
-        clearTimeout(flexboxFixTimeoutId);
-
-        flexboxFixTimeoutId = setTimeout(function () {
-          if ($wrapper.prop("scrollHeight") > $window.height())
-            $wrapper.css("height", "auto");
-          else $wrapper.css("height", "100vh");
-        }, 250);
-      })
-      .triggerHandler("resize.flexbox-fix");
-  }
-
-  // Nav.
-  var $nav = $header.children("nav"),
-    $nav_li = $nav.find("li");
-
-  // Add "middle" alignment classes if we're dealing with an even number of items.
-  if ($nav_li.length % 2 == 0) {
-    $nav.addClass("use-middle");
-    $nav_li.eq($nav_li.length / 2).addClass("is-middle");
-  }
 
   // Main.
   var delay = 325,
@@ -89,8 +50,7 @@
       // Deactivate all articles (just in case one's already active).
       $main_articles.removeClass("active");
 
-      // Hide header, footer.
-      $header.hide();
+      // Hide footer.
       $footer.hide();
 
       // Show main, article.
@@ -137,7 +97,7 @@
           $article.addClass("active");
 
           // Window stuff.
-          $window.scrollTop(0).triggerHandler("resize.flexbox-fix");
+          $window.scrollTop(0);
 
           // Unlock.
           setTimeout(function () {
@@ -154,8 +114,7 @@
 
       // Show article.
       setTimeout(function () {
-        // Hide header, footer.
-        $header.hide();
+        // Hide footer.
         $footer.hide();
 
         // Show main, article.
@@ -167,7 +126,7 @@
           $article.addClass("active");
 
           // Window stuff.
-          $window.scrollTop(0).triggerHandler("resize.flexbox-fix");
+          $window.scrollTop(0);
 
           // Unlock.
           setTimeout(function () {
@@ -202,9 +161,8 @@
       $article.hide();
       $main.hide();
 
-      // Show footer, header.
+      // Show footer.
       $footer.show();
-      $header.show();
 
       // Unmark as visible.
       $body.removeClass("is-article-visible");
@@ -216,7 +174,7 @@
       $body.removeClass("is-switching");
 
       // Window stuff.
-      $window.scrollTop(0).triggerHandler("resize.flexbox-fix");
+      $window.scrollTop(0);
 
       return;
     }
@@ -233,16 +191,15 @@
       $article.hide();
       $main.hide();
 
-      // Show footer, header.
+      // Show footer.
       $footer.show();
-      $header.show();
 
       // Unmark as visible.
       setTimeout(function () {
         $body.removeClass("is-article-visible");
 
         // Window stuff.
-        $window.scrollTop(0).triggerHandler("resize.flexbox-fix");
+        $window.scrollTop(0);
 
         // Unlock.
         setTimeout(function () {
@@ -274,7 +231,7 @@
   });
 
   // Events.
-  $body.on("click", function (event) {
+  $body.on("click", function () {
     // Article visible? Hide.
     if ($body.hasClass("is-article-visible")) $main._hide(true);
   });
@@ -332,14 +289,8 @@
       });
   }
 
-  // Initialize.
-
-  // // Hide main, articles.
-  // 	$main.hide();
-  // 	$main_articles.hide();
-
-  // 不再隐藏 main 和文章。
-  $main_articles.show(); // 如果需要显示所有文章
+  // 旧版独立文章页由各页面的 hash 激活。
+  $main_articles.show();
   $main.show();
 
   // Initial article.
@@ -368,17 +319,12 @@
 
       // 动态插入最后编辑日期
       lastEditedElement.innerHTML = `<p><strong>Last Edited:</strong> ${formattedDate}</p>`;
-
-      // 将日期存储到浏览器的 Local Storage（可选）
-      localStorage.setItem("lastEditedDate", formattedDate);
     }
   });
+
   function findPageLines() {
     const middle = document.querySelector(".page-frame > .page-middle");
     if (middle) return { element: middle, pair: true };
-
-    const panel = document.querySelector("#header .content");
-    if (panel) return { element: panel, pair: true };
 
     const title = document.querySelector("#main article .major");
     if (title) return { element: title, pair: false };
@@ -397,7 +343,7 @@
       lower: rect.bottom,
     };
   }
-    function createLineLayer(width) {
+  function createLineLayer(width) {
     const layer = document.createElement("div");
     layer.className = "page-transition";
     layer.setAttribute("aria-hidden", "true");
@@ -453,7 +399,8 @@
       return play(line, opening ? [center, edge] : [edge, center], duration);
     }));
   }
-    const pageLines = findPageLines();
+
+  const pageLines = findPageLines();
   const motionAllowed = !window.matchMedia(
     "(prefers-reduced-motion: reduce)"
   ).matches;
@@ -486,15 +433,15 @@
       busy = true;
 
       try {
-        // 旧模板会在 load 后展开 Resume 面板或激活 Blog 文章。
-        // 黑色转场层先盖住页面，再读取稳定后的目标位置。
+        // 等页面加载完成，再读取白线的目标位置。
         if (document.readyState !== "complete") {
           await new Promise(resolve =>
             window.addEventListener("load", resolve, { once: true })
           );
         }
 
-        if (!document.querySelector(".page-frame, .home-menu")) {
+        // 旧版文章标题线需要等待 hash 激活后的动画。
+        if (!pageLines.pair) {
           await new Promise(resolve => setTimeout(resolve, 1200));
         }
 
