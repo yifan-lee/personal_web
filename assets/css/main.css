@@ -1843,3 +1843,153 @@ article img {
   margin: 1rem auto; /* 图片居中并与内容保持间距 */
   border-radius: 8px; /* 添加圆角，提升视觉效果 */
 }
+
+
+/* 首页布局 */
+.home-page {
+  background: #000;
+}
+
+.home-page #wrapper {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: 1fr auto 1fr;
+  justify-items: center;
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+.home-page #wrapper::before {
+  content: none;
+}
+
+.home-header {
+  grid-row: 2;
+  position: relative;
+  width: min(22rem, 100%);
+  text-align: center;
+}
+
+.home-header h1 {
+  position: absolute;
+  left: 0;
+  bottom: 100%;
+  width: 100%;
+  margin: 0 0 1.5rem;
+}
+
+.home-page #footer {
+  grid-row: 3;
+  align-self: end;
+  margin: 0;
+}
+
+
+/* 菜单和两条横线 */
+.home-menu {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  row-gap: 0.25rem;
+  padding: 1rem 0;
+}
+
+.home-menu::before,
+.home-menu::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: #ccc;
+  transform: translateY(-50%);
+}
+
+.home-menu::before {
+  top: 0;
+}
+
+.home-menu::after {
+  top: 100%;
+}
+
+/* 两个入口拥有等宽的点击区域 */
+.home-menu a,
+.menu-back {
+  display: grid;
+  place-items: center;
+  width: min(12rem, 100%);
+  min-height: 2.75rem;
+  border: 0;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  letter-spacing: 0.2rem;
+  transition: background-color 0.2s ease;
+}
+
+.home-menu a:hover,
+.home-menu a:focus-visible,
+.menu-back:hover,
+.menu-back:focus-visible {
+  background-color: rgba(255, 255, 255, 0.075);
+}
+
+.menu-back {
+  position: absolute;
+  top: calc(100% + 0.75rem);
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* 首页入场 */
+:root {
+  --line-center-x: 50%;
+  --line-center-y: 50%;
+  --line-color: #ccc;
+}
+
+/* 转场层覆盖整个视口，独立于各页的菜单、页脚和滚动位置。 */
+.page-transition {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  pointer-events: none;
+}
+
+.page-transition-shade {
+  position: absolute;
+  inset: 0;
+  background: #000;
+}
+
+.page-transition-line {
+  position: absolute;
+  left: var(--line-center-x);
+  top: var(--line-center-y);
+  height: 1px;
+  background: var(--line-color);
+  transform: translate(-50%, -50%);
+}
+
+/* 转场层正在画线时，暂时隐藏页面上原来的线。 */
+html.line-transition-active .home-menu::before,
+html.line-transition-active .home-menu::after {
+  visibility: hidden;
+}
+
+html.line-transition-active #header .content,
+html.line-transition-active #main article .major {
+  border-color: transparent;
+}
+
+/* 让转场层和页面自身的线在交接时颜色一致。 */
+.home-menu::before,
+.home-menu::after {
+  background-color: var(--line-color);
+}
+
+#header .content,
+#main article .major {
+  border-color: var(--line-color);
+}

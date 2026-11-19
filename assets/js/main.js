@@ -5,6 +5,14 @@
 */
 
 (function ($) {
+  // 全站页面转场时长，单位为毫秒。数值越大，动作越慢。
+  const transitionMs = {
+    openLine: 300,     // 打开页面：两条线从中央展开
+    fadeIn: 1500,       // 打开页面：文字和背景逐渐显现
+    closeLine: 1000,    // 关闭页面：两条线向中央合拢
+    fadeOut: 300,      // 关闭页面：文字和背景逐渐消失
+    resizeLine: 350,   // 跨页交接：中央单线变为下一页的宽度
+  };
   var $window = $(window),
     $body = $("body"),
     $wrapper = $("#wrapper"),
@@ -365,4 +373,188 @@
       localStorage.setItem("lastEditedDate", formattedDate);
     }
   });
+  function findPageLines() {
+    const middle = document.querySelector(".page-frame > .page-middle");
+    if (middle) return { element: middle, pair: true };
+
+    const panel = document.querySelector("#header .content");
+    if (panel) return { element: panel, pair: true };
+
+    const title = document.querySelector("#main article .major");
+    if (title) return { element: title, pair: false };
+
+    return null;
+  }
+
+  function getLinePositions(pageLines) {
+    const rect = pageLines.element.getBoundingClientRect();
+    const x = rect.left + rect.width / 2;
+
+    return {
+      x,
+      width: rect.width,
+      upper: pageLines.pair ? rect.top : rect.bottom,
+      lower: rect.bottom,
+    };
+  }
+    function createLineLayer(width) {
+    const layer = document.createElement("div");
+    layer.className = "page-transition";
+    layer.setAttribute("aria-hidden", "true");
+    layer.innerHTML = `
+      <div class="page-transition-shade"></div>
+      <div class="page-transition-line"></div>
+      <div class="page-transition-line"></div>
+    `;
+
+    document.body.append(layer);
+    const lines = [...layer.querySelectorAll(".page-transition-line")];
+    for (const line of lines) line.style.width = `${width}px`;
+
+    document.documentElement.classList.add("line-transition-active");
+    return {
+      layer,
+      lines,
+      shade: layer.querySelector(".page-transition-shade"),
+    };
+  }
+
+  function centerFrame(width) {
+    return {
+      left: "var(--line-center-x)",
+      top: "var(--line-center-y)",
+      width: `${width}px`,
+    };
+  }
+
+  function pageFrame(position, y) {
+    return {
+      left: `${position.x}px`,
+      top: `${y}px`,
+      width: `${position.width}px`,
+    };
+  }
+
+  function play(element, frames, duration) {
+    return element.animate(frames, {
+      duration,
+      easing: "ease-in-out",
+      fill: "forwards",
+    }).finished;
+  }
+
+  function moveLines(view, position, opening) {
+    const heights = [position.upper, position.lower];
+
+    return Promise.all(view.lines.map((line, index) => {
+      const center = centerFrame(position.width);
+      const edge = pageFrame(position, heights[index]);
+      const duration = opening ? transitionMs.openLine : transitionMs.closeLine;
+      return play(line, opening ? [center, edge] : [edge, center], duration);
+    }));
+  }
+    const pageLines = findPageLines();
+  const motionAllowed = !window.matchMedia(
+    "(prefers-reduced-motion: reduce)"
+  ).matches;
+  const storageKey = "site-line-transition";
+
+  if (pageLines && motionAllowed) {
+    let busy = false;
+
+    function clearLayer() {
+      document.querySelector(".page-transition")?.remove();
+      document.documentElement.classList.remove("line-transition-active");
+      busy = false;
+    }
+
+    async function enterPage() {
+      const initial = getLinePositions(pageLines);
+      let previousWidth = initial.width;
+
+      try {
+        const saved = JSON.parse(sessionStorage.getItem(storageKey));
+        sessionStorage.removeItem(storageKey);
+        if (saved?.path === location.pathname && saved.width > 0) {
+          previousWidth = saved.width;
+        }
+      } catch {
+        // 存储不可用时，直接使用本页宽度。
+      }
+
+      const view = createLineLayer(previousWidth);
+      busy = true;
+
+      try {
+        // 旧模板会在 load 后展开 Resume 面板或激活 Blog 文章。
+        // 黑色转场层先盖住页面，再读取稳定后的目标位置。
+        if (document.readyState !== "complete") {
+          await new Promise(resolve =>
+            window.addEventListener("load", resolve, { once: true })
+          );
+        }
+
+        if (!document.querySelector(".page-frame, .home-menu")) {
+          await new Promise(resolve => setTimeout(resolve, 1200));
+        }
+
+        const target = getLinePositions(pageLines);
+
+        if (Math.abs(previousWidth - target.width) > 1) {
+          await Promise.all(view.lines.map(line =>
+            play(line, [centerFrame(previousWidth), centerFrame(target.width)], transitionMs.resizeLine)
+          ));
+        }
+
+        await Promise.all([
+          moveLines(view, target, true),
+          play(view.shade, [{ opacity: 1 }, { opacity: 0 }], transitionMs.fadeIn),
+        ]);
+      } finally {
+        clearLayer();
+      }
+    }
+
+    enterPage();
+
+    document.addEventListener("click", async event => {
+      const link = event.target.closest("a[href]");
+      if (!link || event.defaultPrevented || event.button !== 0) return;
+      if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+      if (link.hasAttribute("download") || (link.target && link.target !== "_self")) return;
+
+      const url = new URL(link.href);
+      if (url.origin !== location.origin || url.protocol !== location.protocol) return;
+      if (url.pathname === location.pathname || !url.pathname.endsWith(".html")) return;
+
+      event.preventDefault();
+      if (busy) return;
+      busy = true;
+
+      const source = getLinePositions(pageLines);
+      const view = createLineLayer(source.width);
+
+      try {
+        await Promise.all([
+          moveLines(view, source, false),
+          play(view.shade, [{ opacity: 0 }, { opacity: 1 }], transitionMs.fadeOut),
+        ]);
+
+        try {
+          sessionStorage.setItem(storageKey, JSON.stringify({
+            path: url.pathname,
+            width: source.width,
+          }));
+        } catch {
+          // 存储不可用时，仍然正常跳转。
+        }
+      } finally {
+        window.location.assign(url.href);
+      }
+    });
+
+    window.addEventListener("pageshow", event => {
+      if (event.persisted) clearLayer();
+    });
+  }
 })(jQuery);

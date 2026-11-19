@@ -6,6 +6,7 @@
     <title>Blog Post 1</title>
     <!-- Styles -->
     <link rel="stylesheet" href="../../assets/css/main.css" />
+    <link rel="stylesheet" href="../../assets/css/page-frame.css" />
     <noscript>
       <link rel="stylesheet" href="../../assets/css/noscript.css" />
     </noscript>
@@ -24,26 +25,30 @@
       gtag("config", "G-1N24VJSH9Q");
     </script>
   </head>
-  <body class="is-preload">
-    <!-- Wrapper -->
-    <div id="wrapper_center">
-      <div id="main">
-        <!-- Article -->
-        <article id="blog1">
-          <h2 class="major">Markdown to HTML Test</h2>
-          <h3 id="小标题">小标题</h3>
-          <ol type="1">
+  <body class="site-page" data-layout="article">
+    <main class="page-frame">
+      <header class="page-top">
+        <h1>Markdown to HTML Test</h1>
+      </header>
+
+      <div class="page-middle" role="region" aria-labelledby="post-heading" tabindex="0">
+        <article class="page-prose">
+          <h2 id="post-heading">小标题</h2>
+
+          <ol>
             <li>列表 1</li>
             <li>列表 2</li>
             <li>空</li>
           </ol>
+
           <p>我就是想测试一下，怎么把 md 转换为 html。111</p>
         </article>
       </div>
 
-      <!-- Footer -->
-      <footer id="footer"></footer>
-    </div>
+      <footer class="page-bottom">
+        <a class="page-back" href="./blog-list.html">Back</a>
+      </footer>
+    </main>
 
     <!-- BG -->
     <div id="bg"></div>
@@ -54,11 +59,5 @@
     <script src="../../assets/js/breakpoints.min.js"></script>
     <script src="../../assets/js/util.js"></script>
     <script src="../../assets/js/main.js"></script>
-    <script>
-      // 设置 location.hash，确保初始化时直接加载 blog1
-      window.onload = function () {
-        location.hash = "blog1";
-      };
-    </script>
   </body>
 </html>

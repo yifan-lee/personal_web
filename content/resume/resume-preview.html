@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc 3.14" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Yifan Li</title>
+  <link rel="stylesheet" href="../../assets/css/main.css" />
+  <link rel="stylesheet" href="../../assets/css/page-frame.css" />
+  
+<style>
+  .page-frame { --frame-width: 52rem; }
+  .page-prose { line-height: 1.5; }
+  .page-prose h2 {
+    font-size: 1.1rem;
+    padding-bottom: .35rem;
+    border-bottom: 1px solid rgb(255 255 255 / 25%);
+  }
+  .page-prose section > ul:has(> li > ul) {
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 1rem;
+  }
+  .page-prose section > ul:has(> li > ul) > li {
+    padding-left: 0;
+    margin-top: .85rem;
+  }
+  .page-prose li > ul { margin: .25rem 0 0; }
+  .page-prose li p { margin: .2rem 0; }
+  .page-prose p:has(> em:empty) { display: none; }
+</style>
+</head>
+  <body class="site-page" data-layout="article" style="--page-brightness: 0.45">
+    <main class="page-frame">
+      <header class="page-top">
+            <h1>Yifan Li</h1>
+            <address>
+              <p>444 Washington Blvd, Jersey City, NJ, 07310</p>
+              <p class="page-contact">
+                <a href="tel:+16082165993">(+1) 608-216-5993</a>
+                <a href="mailto:ivanlee142857@gmail.com">ivanlee142857@gmail.com</a>
+                <a href="https://github.com/yifan-lee">github.com/yifan-lee</a>
+              </p>
+            </address>
+          </header>
+
+<div class="page-middle" role="region" aria-label="Résumé" tabindex="0">
+  <article class="page-prose">
+    <section aria-labelledby="education">
+      <h2 class="unnumbered" id="education">Education</h2>
+<h3 class="unnumbered" id="university-of-connecticut">University of
+Connecticut</h3>
+<p><strong>PhD in Statistics</strong></p>
+<p><em>Connecticut, USA Sep 2018 - Sep 2023</em></p>
+<h3 class="unnumbered" id="university-of-wisconsin---madison">University
+of Wisconsin - Madison</h3>
+<p><strong>Master of Science in Statistics</strong></p>
+<p><em>Wisconsin, USA Sep 2016 - May 2018</em></p>
+<h3 class="unnumbered" id="nanjing-university">Nanjing University</h3>
+<p><strong>Bachelor of Science in Statistics</strong></p>
+<p><em>Jiangsu, China Sep 2013 - Jun 2017</em></p>
+</section>
+<section aria-labelledby="professional-summary">
+<h2 class="unnumbered" id="professional-summary">Professional
+Summary</h2>
+<p><span> Data Scientist and Quantitative Consultant with a PhD in
+Statistics. Experienced in derivative pricing, CCAR stress testing,
+multi-agent reporting systems with LangGraph, and credit risk modeling.
+Strong background in statistical inference, algorithm optimization
+(American Monte Carlo), and machine learning on imbalanced data.
+</span></p>
+</section>
+<section aria-labelledby="work-experience">
+<h2 class="unnumbered" id="work-experience">Work Experience</h2>
+<h3 class="unnumbered" id="ernst-young-llp-ey">Ernst &amp; Young LLP
+(EY)</h3>
+<p><strong>Senior Consultant | Data Science &amp; Quantitative
+Strategy</strong></p>
+<p><em>New York, NY Oct. 2023 - Present</em></p>
+<ul>
+<li><p><span><strong>Dual-Stage Credit Risk Modeling &amp; High-Risk
+Applicant Screening</strong></span></p>
+<ul>
+<li><p><span> Architected a two-stage credit risk framework on a dataset
+of <strong>200,000+ loan applicants</strong>: an <strong>unsupervised
+screening engine</strong> for instant cold-start risk filtering, and a
+<strong>supervised ensemble model</strong> for applicants with repayment
+history. </span></p></li>
+<li><p><span> Implemented <strong>Isolation Forest</strong> to isolate
+extreme high-risk outliers based on tree partition path lengths;
+selected it for its <strong>low computational latency and minimal memory
+footprint</strong>, enabling real-time, hardware-constrained screening
+without requiring historical labels. </span></p></li>
+<li><p><span> Aggregated raw payment logs into behavioral metrics,
+created <strong>missing indicator variables</strong> to measure data
+completeness, and applied <strong>class-weighted loss</strong> to
+address severe default imbalance. </span></p></li>
+<li><p><span> Ensembled <strong>Logistic Regression, Random Forest, and
+XGBoost</strong> in a mixture-of-experts style, boosting model
+<strong>AUC by +0.02</strong> and establishing reliable approval cutoffs
+for risk management. </span></p></li>
+</ul></li>
+<li><p><span><strong>Multi-Agent Financial Reporting System based on
+LangGraph</strong></span></p>
+<ul>
+<li><p><span> Built a <strong>multi-agent system</strong> using
+<strong>LangGraph</strong> to automate Ongoing Performance Assessment
+(OPA) reporting, eliminating heavy manual documentation.
+</span></p></li>
+<li><p><span> Orchestrated specialized agents to execute the end-to-end
+quantitative workflow: <span>Option Pricing</span>,
+<span>Validation</span>, <span>Sensitivity &amp; Risk Testing</span>,
+and <span>Report Synthesis</span>, achieving maximum
+<strong>reusability</strong> across diverse report templates sharing
+common analytical agents. </span></p></li>
+<li><p><span> Developed an interactive <strong>Streamlit</strong>
+dashboard allowing stakeholders to upload raw data, trigger the
+pipeline, and visualize validation metrics in real time.
+</span></p></li>
+<li><p><span> Reduced the operational effort from a team of dozens to a
+small maintenance crew, significantly shortening report delivery time
+while ensuring high consistency. </span></p></li>
+</ul></li>
+<li><p><span><strong>CCAR Stress Testing for Trading Book (ETD &amp;
+OTC)</strong></span></p>
+<ul>
+<li><p><span> Redesigned the <strong>CCAR stress testing
+framework</strong> (Comprehensive Capital Analysis and Review) into a
+modular architecture to simulate P&amp;L and risk impacts across
+<strong>$20B+ in notional exposure</strong> for equity, FX, and
+commodity derivatives under regulatory scenarios. </span></p></li>
+<li><p><span> Replaced fragmented manual workflows (spreadsheets, ad-hoc
+scripts) with a standardized <strong>Python pipeline</strong> to
+automatically ingest, clean, and merge data across disparate databases.
+</span></p></li>
+<li><p><span> Implemented a <strong>Depth-First Search (DFS)</strong>
+algorithm to traverse complex, nested trade attribute dictionaries,
+extracting precise contract terms for exact pricing. </span></p></li>
+<li><p><span> Shortened the end-to-end stress testing cycle from
+<strong>months to weeks</strong> while significantly improving P&amp;L
+calculation accuracy and audit readiness. </span></p></li>
+</ul></li>
+<li><p><span><strong>Accelerated American Options Pricing via American
+Monte Carlo (AMC)</strong></span></p>
+<ul>
+<li><p><span> Resolved the computational bottleneck in American option
+valuation, replacing computationally prohibitive
+<strong>MCMC-over-MCMC</strong> simulations. Implemented the
+<strong>American Monte Carlo (AMC)</strong> framework, reducing
+calculation time from
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="bold-italic">𝑶</mi><mo stretchy="false" form="prefix" mathvariant="bold">(</mo><msup><mi mathvariant="bold-italic">𝒏</mi><mn mathvariant="bold">𝟐</mn></msup><mo stretchy="false" form="postfix" mathvariant="bold">)</mo></mrow><annotation encoding="application/x-tex">\mathbf{O(n^2)}</annotation></semantics></math>
+to
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="bold-italic">𝑶</mi><mo stretchy="false" form="prefix" mathvariant="bold">(</mo><mi mathvariant="bold-italic">𝒏</mi><mo stretchy="false" form="postfix" mathvariant="bold">)</mo></mrow><annotation encoding="application/x-tex">\mathbf{O(n)}</annotation></semantics></math>.
+</span></p></li>
+<li><p><span> Incorporated cross-asset <strong>underlying correlation
+structures</strong> into the joint simulation, enabling simultaneous
+valuation of mixed portfolios (e.g., vanilla and binary American
+options). </span></p></li>
+<li><p><span> Slashed portfolio pricing runtime from <strong>days to a
+few minutes</strong> while preserving strict pricing precision and
+convergence standards. </span></p></li>
+</ul></li>
+</ul>
+<h3 class="unnumbered"
+id="realmwand-the-first-tower-2d-rpg-game">Realmwand: The First Tower
+(2D RPG Game)</h3>
+<p><strong>Solo Developer | Indie Game Project</strong></p>
+<p><em></em></p>
+<ul>
+<li><p><span> Architected and developed a 2D Active Time Battle (ATB)
+grid-based RPG from scratch, implementing a clean, modular architecture
+powered by an event-driven signal system and strict data/runtime state
+separation. </span></p></li>
+</ul>
+</section>
+<section aria-labelledby="skills">
+<h2 class="unnumbered" id="skills">Skills</h2>
+<p><strong>Product &amp; Business Analytics</strong> User/Player
+Segmentation, Propensity Modeling, LTV Optimization, Anomaly/Outlier
+Detection</p>
+<p><strong>Machine Learning &amp; Statistics</strong> XGBoost, Random
+Forest, Logistic Regression, Isolation Forest, PCA, K-Means, Decision
+Trees, ViT</p>
+<p><strong>Experimentation &amp; Evaluation</strong> A/B Testing,
+Experiment Design, Causal Inference, Hypothesis Testing, ROC Analysis,
+FP/FN Tradeoffs</p>
+<p><strong>Languages &amp; Tools</strong> Python, R, PyTorch, SQL,
+Streamlit, LangGraph, Godot</p>
+      </section>
+  </article>
+</div>
+
+<footer class="page-bottom">
+  <a class="page-back" href="./resume.html">Back</a>
+</footer>
+</main>
+
+  <div id="bg"></div>
+
+  <script src="../../assets/js/jquery.min.js"></script>
+  <script src="../../assets/js/browser.min.js"></script>
+  <script src="../../assets/js/breakpoints.min.js"></script>
+  <script src="../../assets/js/util.js"></script>
+  <script src="../../assets/js/main.js"></script>
+</body>
+</html>

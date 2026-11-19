@@ -1,0 +1,227 @@
+/* 页面可用空间 */
+.site-page {
+  margin: 0;
+  background: #000;
+}
+
+.page-frame {
+  --frame-width: 46rem;
+
+  position: relative;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  width: min(100%, var(--frame-width));
+  height: 100vh;
+  height: 100dvh;
+  margin-inline: auto;
+  padding: clamp(0.75rem, 3vh, 2rem) clamp(1rem, 4vw, 2rem);
+  box-sizing: border-box;
+}
+
+.site-page[data-layout="menu"] .page-frame {
+  --frame-width: 26rem;
+}
+
+/* 上方和下方按内容取高度。短页面的多余空间分配在整组内容两端。 */
+.page-top,
+.page-bottom {
+  flex: none;
+  text-align: center;
+}
+
+.page-top {
+  margin-top: auto;
+  padding-bottom: 1rem;
+}
+
+.page-top h1 {
+  margin: 0;
+}
+
+.page-bottom {
+  margin-bottom: auto;
+  padding-top: 0.65rem;
+}
+
+.page-bottom:empty {
+  padding: 0;
+}
+
+.page-bottom p {
+  margin: 0;
+}
+
+/* 中间按内容自然展开，空间不足时缩小，并在内部滚动。 */
+.page-middle {
+  flex: 0 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  border-block: 1px solid var(--line-color, #ccc);
+}
+
+/* Chrome 和 Safari：给实际溢出的内容区显示窄滚动条。 */
+.page-middle::-webkit-scrollbar {
+  width: 8px;
+}
+
+.page-middle::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.page-middle::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.38);
+  border-radius: 8px;
+}
+
+.page-middle::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.62);
+}
+
+/* 使用标准滚动条样式的浏览器，例如 Firefox。 */
+@supports not selector(::-webkit-scrollbar) {
+  .page-middle {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.38) rgba(255, 255, 255, 0.06);
+  }
+}
+
+/* 全站动画层接管横线时，隐藏这两条静态边框。 */
+html.line-transition-active .page-middle {
+  border-color: transparent;
+}
+
+/* 菜单及下方的 Back 共用点击区域和悬停样式。 */
+.page-menu {
+  display: grid;
+  justify-items: center;
+  gap: 0.25rem;
+  padding-block: 0.8rem;
+}
+
+.page-menu > a,
+.page-back {
+  display: grid;
+  place-items: center;
+  width: min(12rem, 100%);
+  min-height: 2.75rem;
+  margin-inline: auto;
+  padding-inline: 0.5rem;
+  border: 0;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.2rem;
+  font-size: 0.8rem;
+  transition: background-color 180ms ease;
+}
+
+.page-menu > a:hover,
+.page-menu > a:focus-visible,
+.page-back:hover,
+.page-back:focus-visible {
+  background-color: rgba(255, 255, 255, 0.075);
+}
+
+/* 长正文保留左右留白，图片跟随阅读区宽度。 */
+/* 左文右图的菜单：整行可点击，缩略图约两行半文字高。 */
+.page-menu[data-align="left"] {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.page-menu[data-align="left"] > a {
+  width: 100%;
+  min-width: 0;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  justify-items: start;
+  gap: 0.75rem;
+  padding: 0.5rem 0.75rem;
+  text-align: left;
+}
+
+.page-menu[data-align="left"] > a > span {
+  overflow-wrap: anywhere;
+}
+
+.page-menu[data-align="left"] > a > img {
+  display: block;
+  height: 2.5lh;
+  width: 3.5lh;
+  object-fit: cover;
+}
+.page-prose {
+  padding: 1rem clamp(0.5rem, 2vw, 1.25rem);
+  overflow-wrap: anywhere;
+}
+
+.page-prose img {
+  max-width: 100%;
+  height: auto;
+}
+
+.page-prose h2 {
+  margin: 1.5rem 0 0.75rem;
+  letter-spacing: 0.12em;
+}
+
+.page-prose h3 {
+  margin: 1.1rem 0 0.35rem;
+  text-transform: none;
+  letter-spacing: normal;
+}
+
+.page-prose p {
+  margin: 0.4rem 0;
+}
+
+/* 需要整章悬停效果时，用 section 包住这一章。 */
+.page-prose > section {
+  padding: 0.75rem;
+  transition: background-color 180ms ease;
+}
+
+.page-prose > section > :first-child {
+  margin-top: 0;
+}
+
+@media (hover: hover) {
+  .page-prose > section:hover {
+    background-color: rgba(255, 255, 255, 0.075);
+  }
+}
+
+/* 页首可选的联系方式 */
+.page-top address {
+  margin-top: 0.5rem;
+  font-style: normal;
+}
+
+.page-top address p {
+  margin: 0.25rem 0;
+}
+
+.page-contact {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.25rem 1.25rem;
+  overflow-wrap: anywhere;
+}
+
+/* 背景配置。省略图片配置时，沿用 main.css 的默认背景。 */
+.site-page #bg {
+  filter: brightness(var(--page-brightness, 1));
+}
+
+.site-page[data-background] #bg::after {
+  background-image: var(--page-image);
+}
+
+.page-bottom .copyright {
+  margin: 0;
+  font-size: 0.6rem;
+  letter-spacing: 0.2rem;
+  text-transform: uppercase;
+  opacity: 0.75;
+}
