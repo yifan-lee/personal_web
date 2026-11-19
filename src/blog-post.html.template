@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="$if(lang)$$lang$$else$en$endif$">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>$pagetitle$</title>
+    <link rel="stylesheet" href="../../assets/css/main.css" />
+    <link rel="stylesheet" href="../../assets/css/page-frame.css" />
+    <noscript><link rel="stylesheet" href="../../assets/css/noscript.css" /></noscript>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-1N24VJSH9Q"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { window.dataLayer.push(arguments); }
+      gtag("js", new Date());
+      gtag("config", "G-1N24VJSH9Q");
+    </script>
+  </head>
+  <body class="site-page" data-layout="article">
+    <main class="page-frame">
+      <header class="page-top">
+        $post-heading$
+      </header>
+      <div class="page-middle" role="region" aria-label="$pagetitle$" tabindex="0">
+        <article class="page-prose">
+          $body$
+          <div id="last-edited"></div>
+        </article>
+      </div>
+      <footer class="page-bottom">
+        <a class="page-back" href="./blog-list.html">Back</a>
+      </footer>
+    </main>
+    <div id="bg"></div>
+    <script src="../../assets/js/jquery.min.js"></script>
+    <script src="../../assets/js/main.js"></script>
+  </body>
+</html>

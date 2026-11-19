@@ -3,9 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Blog Post 1</title>
+    <title>Review: Card-Shaped USB Drive</title>
     <!-- Styles -->
     <link rel="stylesheet" href="../../assets/css/main.css" />
+    <link rel="stylesheet" href="../../assets/css/page-frame.css" />
     <noscript>
       <link rel="stylesheet" href="../../assets/css/noscript.css" />
     </noscript>
@@ -24,15 +25,19 @@
       gtag("config", "G-1N24VJSH9Q");
     </script>
   </head>
-  <body class="is-preload">
-    <!-- Wrapper -->
-    <div id="wrapper_center">
-      <div id="main">
-        <!-- Article -->
-        <article id="blog1">
-          <h1 id="review-card-shaped-usb-drive">
-            Review: Card-Shaped USB Drive
-          </h1>
+  <body class="site-page" data-layout="article">
+    <main class="page-frame">
+      <header class="page-top">
+        <h1 id="unboxing-kindle-colorsoft">Review: Card-Shaped USB Drive</h1>
+      </header>
+
+      <div
+        class="page-middle"
+        role="region"
+        aria-labelledby="unboxing-kindle-colorsoft"
+        tabindex="0"
+      >
+        <article id="blog1" class="page-prose">
           <h2 id="category-electronics">Category: Electronics</h2>
           <p><strong>Recommendation Rating: 1/10</strong></p>
           <p><strong>Price: ¥80</strong></p>
@@ -95,21 +100,15 @@
         </article>
       </div>
 
-      <!-- Footer -->
-      <footer id="footer"></footer>
-    </div>
-
+      <footer class="page-bottom">
+        <a class="page-back" href="./blog-list.html">Back</a>
+      </footer>
+    </main>
     <!-- BG -->
     <div id="bg"></div>
 
     <!-- Scripts -->
     <script src="../../assets/js/jquery.min.js"></script>
     <script src="../../assets/js/main.js"></script>
-    <script>
-      // 设置 location.hash，确保初始化时直接加载 blog1
-      window.onload = function () {
-        location.hash = "blog1";
-      };
-    </script>
   </body>
 </html>
