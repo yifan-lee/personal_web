@@ -11,6 +11,7 @@
   z-index: 3;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   width: min(100%, var(--frame-width));
   height: 100vh;
   height: 100dvh;
@@ -31,7 +32,6 @@
 }
 
 .page-top {
-  margin-top: auto;
   padding-bottom: 1rem;
 }
 
@@ -40,7 +40,6 @@
 }
 
 .page-bottom {
-  margin-bottom: auto;
   padding-top: 0.65rem;
 }
 
@@ -209,10 +208,7 @@ html.line-transition-active .page-middle {
   overflow-wrap: anywhere;
 }
 
-/* 背景配置。省略图片配置时，沿用 main.css 的默认背景。 */
-.site-page #bg {
-  filter: brightness(var(--page-brightness, 1));
-}
+
 
 .site-page[data-background] #bg::after {
   background-image: var(--page-image);

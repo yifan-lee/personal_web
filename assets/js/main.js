@@ -7,10 +7,10 @@
 (function ($) {
   // 全站页面转场时长，单位为毫秒。数值越大，动作越慢。
   const transitionMs = {
-    openLine: 300,     // 打开页面：两条线从中央展开
-    fadeIn: 1500,       // 打开页面：文字和背景逐渐显现
-    closeLine: 1000,    // 关闭页面：两条线向中央合拢
-    fadeOut: 300,      // 关闭页面：文字和背景逐渐消失
+    openLine: 200,     // 打开页面：两条线从中央展开
+    fadeIn: 500,       // 打开页面：文字和背景逐渐显现
+    closeLine: 500,    // 关闭页面：两条线向中央合拢
+    fadeOut: 200,      // 关闭页面：文字和背景逐渐消失
     resizeLine: 350,   // 跨页交接：中央单线变为下一页的宽度
   };
   var $window = $(window),
@@ -407,12 +407,11 @@
   const storageKey = "site-line-transition";
 
   if (pageLines && motionAllowed) {
-    let busy = false;
+    let navigationPending = false;
 
     function clearLayer() {
       document.querySelector(".page-transition")?.remove();
       document.documentElement.classList.remove("line-transition-active");
-      busy = false;
     }
 
     async function enterPage() {
@@ -430,7 +429,6 @@
       }
 
       const view = createLineLayer(previousWidth);
-      busy = true;
 
       try {
         // 等页面加载完成，再读取白线的目标位置。
@@ -462,7 +460,7 @@
       }
     }
 
-    enterPage();
+    const entryFinished = enterPage();
 
     document.addEventListener("click", async event => {
       const link = event.target.closest("a[href]");
@@ -475,8 +473,11 @@
       if (url.pathname === location.pathname || !url.pathname.endsWith(".html")) return;
 
       event.preventDefault();
-      if (busy) return;
-      busy = true;
+
+      if (navigationPending) return;
+      navigationPending = true;
+
+      await entryFinished;
 
       const source = getLinePositions(pageLines);
       const view = createLineLayer(source.width);
@@ -501,7 +502,10 @@
     });
 
     window.addEventListener("pageshow", event => {
-      if (event.persisted) clearLayer();
+      if (event.persisted) {
+        navigationPending = false;
+        clearLayer();
+      }
     });
   }
 })(jQuery);

@@ -1262,6 +1262,15 @@ button {
   z-index: 2;
 }
 
+/* 全站内页的背景模糊强度 */
+:root {
+  --page-bg-blur: 10px;
+}
+
+/* 首页保留清晰背景 */
+body[data-page="home"] {
+  --page-bg-blur: 0px;
+}
 #bg:after {
   -moz-transform: scale(1.125);
   -webkit-transform: scale(1.125);
@@ -1274,6 +1283,7 @@ button {
   -ms-transition: -ms-transform 0.325s ease-in-out,
     -ms-filter 0.325s ease-in-out;
   transition: transform 0.325s ease-in-out, filter 0.325s ease-in-out;
+  filter: blur(var(--page-bg-blur));
   background-image: url("../../images/gengar.jpg");
   background-position: center;
   background-size: cover;
@@ -1286,10 +1296,6 @@ body.is-article-visible #bg:after {
   -webkit-transform: scale(1.0825);
   -ms-transform: scale(1.0825);
   transform: scale(1.0825);
-  -moz-filter: blur(0.2rem);
-  -webkit-filter: blur(0.2rem);
-  -ms-filter: blur(0.2rem);
-  filter: blur(0.2rem);
 }
 
 body.is-preload #bg:before {
