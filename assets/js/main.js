@@ -320,6 +320,36 @@
       // 动态插入最后编辑日期
       lastEditedElement.innerHTML = `<p><strong>Last Edited:</strong> ${formattedDate}</p>`;
     }
+    const articleFrame = document.querySelector(
+      '.site-page[data-layout="article"] .page-frame'
+    );
+
+    if (articleFrame) {
+      const pageTop = articleFrame.querySelector(":scope > .page-top");
+      const pageBottom = articleFrame.querySelector(":scope > .page-bottom");
+
+      function updatePageMiddleMaxHeight() {
+        const styles = getComputedStyle(articleFrame);
+        const maxHeight =
+          articleFrame.clientHeight -
+          parseFloat(styles.paddingTop) -
+          parseFloat(styles.paddingBottom) -
+          (pageTop?.getBoundingClientRect().height ?? 0) -
+          (pageBottom?.getBoundingClientRect().height ?? 0);
+
+        articleFrame.style.setProperty(
+          "--page-middle-max-height",
+          `${Math.max(0, maxHeight)}px`
+        );
+      }
+
+      updatePageMiddleMaxHeight();
+
+      const observer = new ResizeObserver(updatePageMiddleMaxHeight);
+      observer.observe(articleFrame);
+      if (pageTop) observer.observe(pageTop);
+      if (pageBottom) observer.observe(pageBottom);
+    }
   });
 
   function findPageLines() {

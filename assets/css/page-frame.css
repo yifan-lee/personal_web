@@ -1,3 +1,9 @@
+/* 全站图片尺寸 */
+:root {
+  --article-image-height-ratio: 0.618;
+  --blog-thumbnail-lines: 2;
+  --blog-thumbnail-max-width: 40%;
+}
 /* 页面可用空间 */
 .site-page {
   margin: 0;
@@ -123,31 +129,33 @@ html.line-transition-active .page-middle {
 }
 
 /* 长正文保留左右留白，图片跟随阅读区宽度。 */
-/* 左文右图的菜单：整行可点击，缩略图约两行半文字高。 */
 .page-menu[data-align="left"] {
   grid-template-columns: minmax(0, 1fr);
 }
-
 .page-menu[data-align="left"] > a {
+  display: flex;
   width: 100%;
   min-width: 0;
-  grid-template-columns: minmax(0, 1fr) auto;
   align-items: center;
-  justify-items: start;
   gap: 0.75rem;
   padding: 0.5rem 0.75rem;
   text-align: left;
 }
 
 .page-menu[data-align="left"] > a > span {
+  flex: 1;
+  min-width: 0;
   overflow-wrap: anywhere;
 }
 
 .page-menu[data-align="left"] > a > img {
   display: block;
-  height: 2.5lh;
-  width: 3.5lh;
-  object-fit: cover;
+  flex: 0 0 auto;
+  height: calc(var(--blog-thumbnail-lines) * 1lh);
+  width: auto;
+  max-width: var(--blog-thumbnail-max-width);
+  object-fit: contain;
+  object-position: right center;
 }
 .page-prose {
   padding: 1rem clamp(0.5rem, 2vw, 1.25rem);
@@ -155,8 +163,12 @@ html.line-transition-active .page-middle {
 }
 
 .page-prose img {
-  max-width: 100%;
+  width: auto;
   height: auto;
+  max-width: 100%;
+  max-height: calc(
+    var(--page-middle-max-height, 100vh) * var(--article-image-height-ratio)
+  );
 }
 
 .page-prose h2 {
